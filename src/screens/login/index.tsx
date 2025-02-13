@@ -21,7 +21,7 @@ function Login() {
           <View style={styles.countryCodeContainer}>
             <Text style={styles.countryCodeText}>+91</Text>
           </View>
-          <TextInput
+          <TextInput 
             style={styles.textInput}
             placeholder="Enter your phone number"
             keyboardType="phone-pad"
