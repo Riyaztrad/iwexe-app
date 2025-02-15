@@ -5,15 +5,11 @@ import {responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensi
 
 const LogoImage = require('../splash/assets/Images/iwexe-logo.png')
 
-interface IPropNavigation {
-  
-}
-
 
 function Splash({ navigation }: any) {
 
   setTimeout(() => {
-    navigation.navigate("login");
+    navigation.navigate("Leaveapproved");
   }, 2000);
 
   return (

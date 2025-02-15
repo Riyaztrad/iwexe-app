@@ -6,7 +6,9 @@ const appRoutes={
     splash:"splash",
     setting:"setting",
     bottomTabNavigator:"bottomTabNavigator",
-    myTeam:"myTeam"
+    myTeam:"myTeam",
+    attendance:"attendance",
+    leaveApproved:"Leaveapproved"
 }
 
 export default appRoutes
