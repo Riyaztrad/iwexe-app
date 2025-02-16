@@ -1,0 +1,1 @@
+export const LogoImage = require('../../assets/Images/iwexe-logo.png');
