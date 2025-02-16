@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, StatusBar} from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView} from "react-native";
 import Icons from 'react-native-vector-icons/AntDesign'
 import Calender from 'react-native-vector-icons/Feather'
 
@@ -11,7 +11,7 @@ function Attendancehistory(){
     });
 
 return (
-    
+    <SafeAreaView style={{flex:1}}>
   <View style={styles.container}>
     <StatusBar backgroundColor={"#351f43"} />
     <View style={styles.header}>
@@ -47,6 +47,7 @@ return (
       )}
     />
   </View>
+  </SafeAreaView>
 
 );
 }

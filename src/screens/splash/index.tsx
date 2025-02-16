@@ -9,7 +9,7 @@ const LogoImage = require('../splash/assets/Images/iwexe-logo.png')
 function Splash({ navigation }: any) {
 
   setTimeout(() => {
-    navigation.navigate("Leaveapproved");
+    navigation.navigate("login");
   }, 2000);
 
   return (

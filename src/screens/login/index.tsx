@@ -12,7 +12,7 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   ScrollView,
-
+  StatusBar
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { OtpInput } from "react-native-otp-entry";
@@ -28,9 +28,9 @@ function Login() {
   }
 
 
-
   return (
     <SafeAreaView style={styles.safeContainer}>
+      <StatusBar backgroundColor={"#351f43"} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.linearGradient}
@@ -40,7 +40,7 @@ function Login() {
           <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <LinearGradient
               colors={["#351f43", "#d4dae7"]}
-              locations={[0.6, 0]}
+              locations={[0.6, 0.6]}
               start={{ x: 0.1, y: 0 }}
               end={{ x: 0.1, y: 1 }}
             >
@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
   },
   safeContainer:{
     flex: 1, 
-    height: "100%", 
-    backgroundColor: "#d4dae7"
+    backgroundColor: "#d4dae7",
+    height:'100%'
   },
   resendContainer:{
     flexDirection: "row",
@@ -148,19 +148,12 @@ const styles = StyleSheet.create({
     alignContent: "center",
     paddingTop: 10,
   },
-  // otpText:{
-  //   paddingTop: 10,
-  //   paddingBottom: 10,
-  //   fontSize: 12,
-  //   color: "#000",
-  // },
   container: {
     flex: 1,
     backgroundColor: "#fff",
   },
   logionButton: {
-    position: "absolute",
-    bottom:-40,
+    bottom:40,
     alignSelf: "center",
   },
   logonButtomContainer: {
@@ -236,9 +229,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.3,
-    // shadowRadius: 4,
-    // elevation: 5,
   },
   buttonText: {
     color: "#fff",
