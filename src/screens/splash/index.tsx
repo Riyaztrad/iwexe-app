@@ -1,19 +1,16 @@
-import React from 'react'
-import { View,StyleSheet , Image} from 'react-native'
-import {responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensions'
+import React from "react";
+import { View, StyleSheet, Image } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+} from "react-native-responsive-dimensions";
+import appRoutes from "../../navigation/appRoutes";
 
-
-const LogoImage = require('../splash/assets/Images/iwexe-logo.png')
-
-interface IPropNavigation {
-  
-}
-
+const LogoImage = require("../splash/assets/Images/iwexe-logo.png");
 
 function Splash({ navigation }: any) {
-
   setTimeout(() => {
-    navigation.navigate("login");
+    navigation.navigate(appRoutes.login);
   }, 2000);
 
   return (
@@ -26,19 +23,19 @@ function Splash({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',   
-    alignItems: 'center',      
-    backgroundColor: '#f0f0f0', 
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
   },
   text: {
-    fontSize: 24,              
-    fontWeight: 'bold',       
-    color: '#333',             
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
   },
-  imageContainer:{
-    width:responsiveWidth(80),
-    height:responsiveHeight(50)
-  }
-})
+  imageContainer: {
+    width: responsiveWidth(80),
+    height: responsiveHeight(50),
+  },
+});
 
-export default Splash
+export default Splash;

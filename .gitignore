@@ -42,7 +42,7 @@ android/app/build/**
 *.ninja_log
 hash_key.txt
 *.bin
-*.json
+# *.json
 *.lock
 # Node.js
 node_modules/

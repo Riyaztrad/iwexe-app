@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-// import Icon from "react-native-vector-icons/Feather"; 
+// import Icon from "react-native-vector-icons/Feather";
 import LeaveIcon from "../../assets/Images/leave.svg";
 import PayrollIcon from "../../assets/Images/payroll.svg";
 import SalaryIcon from "../../assets/Images/salary.svg";
 import ApprovalsIcon from "../../assets/Images/approvals.svg";
 import EventIcon from "../../assets/Images/event.svg";
+import appRoutes from "../../navigation/appRoutes";
 const HomeScreen = () => {
   const navigation = useNavigation();
 
@@ -14,76 +21,74 @@ const HomeScreen = () => {
 
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-
-    <View style={styles.container}>
-      {/* Header Section */}
-      <View style={styles.header}>
-        <View>
-          <Text style={styles.userName}>Gunwant Kolhe</Text>
-          <Text style={styles.dateText}>Wed, Feb 5 at 1:33 pm</Text>
+      <View style={styles.container}>
+        {/* Header Section */}
+        <View style={styles.header}>
+          <View>
+            <Text style={styles.userName}>Gunwant Kolhe</Text>
+            <Text style={styles.dateText}>Wed, Feb 5 at 1:33 pm</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <TouchableOpacity style={styles.iconButton}>
+              {/* <Icon name="bell" size={24} color="white" /> */}
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconButton}>
+              {/* <Icon name="settings" size={24} color="white" /> */}
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.iconContainer}>
-          <TouchableOpacity style={styles.iconButton}>
-            {/* <Icon name="bell" size={24} color="white" /> */}
+
+        {/* Menu Section */}
+        <View style={styles.gridContainer}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate(appRoutes.Attendancehistory)}
+          >
+            <Text style={styles.menuText}>Attendance</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            {/* <Icon name="settings" size={24} color="white" /> */}
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate(appRoutes.leave)}
+          >
+            <LeaveIcon width={40} height={40} />
+            <Text style={styles.menuText}>Leave</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("Payroll")}
+          >
+            <PayrollIcon width={40} height={40} />
+            <Text style={styles.menuText}>Payroll</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("SalaryDetails")}
+          >
+            <SalaryIcon width={40} height={40} />
+            <Text style={styles.menuText}>Salary Details</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("Approvals")}
+          >
+            <ApprovalsIcon width={40} height={40} />
+            <Text style={styles.menuText}>Approvals</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("Event")}
+          >
+            <EventIcon width={40} height={40} />
+            <Text style={styles.menuText}>Event</Text>
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* Menu Section */}
-      <View style={styles.gridContainer}>
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("attendance")}
-        >
-          <Text style={styles.menuText}>Attendance</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("leave")}
-        >
-          <LeaveIcon width={40} height={40} />
-          <Text style={styles.menuText}>Leave</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("Payroll")}
-        >
-          <PayrollIcon width={40} height={40} />
-          <Text style={styles.menuText}>Payroll</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("SalaryDetails")}
-        >
-          <SalaryIcon width={40} height={40} />
-          <Text style={styles.menuText}>Salary Details</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("Approvals")}
-        >
-          <ApprovalsIcon width={40} height={40} />
-          <Text style={styles.menuText}>Approvals</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("Event")}
-        >
-          <EventIcon width={40} height={40} />
-          <Text style={styles.menuText}>Event</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
     </ImageBackground>
-
   );
 };
 
@@ -110,7 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
-
   },
   dateText: {
     fontSize: 14,
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 15,
     elevation: 3,
-    opacity:0.9
+    opacity: 0.9,
   },
   menuText: {
     fontSize: 16,

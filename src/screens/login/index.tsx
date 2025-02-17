@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import React , {useState}from 'react'
+import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -13,23 +13,39 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   ScrollView,
-
+  ActivityIndicator,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { OtpInput } from "react-native-otp-entry";
-import appRoutes from '../../navigation/appRoutes';
-const  shoplogo = require('../../assets/Images/shoplogo.png')
- 
+import Icons from "react-native-vector-icons/AntDesign";
+import useAuthAction from "../../apiActions/useAuthAction";
+const shoplogo = require("../login/assets/Images/design.png");
+
 function Login() {
-  const [isLogin, setIslogin] = useState<boolean>(false)
-  const navigation = useNavigation<any>()
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [IsLogin, setIsLogin] = useState<boolean>(false);
+  const [mobileNo, setMobileNo] = useState<string>("");
+  const [otp, setOtp] = useState<string>("");
 
-  const onLogin = ()=> {
-    // setIslogin(!isLogin)
-    navigation.navigate("home")
-  }
+  const { trySendOtp, tryVerifyOtp } = useAuthAction();
+  const onLogin = async () => {
+    try {
+      setIsSubmitting(true);
+      const response = IsLogin
+        ? await tryVerifyOtp(mobileNo, otp)
+        : await trySendOtp(mobileNo);
+      if (response.status === 200) {
+        setIsLogin(true);
+      }
+      setIsSubmitting(false);
+    } catch (ex) {
+      setIsSubmitting(false);
+    }
+  };
 
-
+  const handleOnChange = (value: string) => {
+    setMobileNo(value);
+  };
 
   return (
     <SafeAreaView style={styles.safeContainer}>
@@ -49,7 +65,7 @@ function Login() {
               <Image source={shoplogo} style={styles.logo} />
               <View style={styles.card}>
                 <View>
-                  {isLogin ? (
+                  {IsLogin ? (
                     <>
                       <Text style={styles.loginText}>Confirm OTP</Text>
                       <Text
@@ -60,7 +76,7 @@ function Login() {
                           color: "#000",
                         }}
                       >
-                        Enter the OTP sent to - +91 7881934945
+                        The OTP sent to your whatsapp +91 7881934945
                       </Text>
                       <OtpInput
                         numberOfDigits={4}
@@ -75,7 +91,7 @@ function Login() {
                         onFocus={() => console.log("Focused")}
                         onBlur={() => console.log("Blurred")}
                         onTextChange={(text) => console.log(text)}
-                        onFilled={(text) => console.log(`OTP is ${text}`)}
+                        onFilled={setOtp}
                         textInputProps={{
                           accessibilityLabel: "One-Time Password",
                         }}
@@ -90,8 +106,12 @@ function Login() {
                         <Text style={styles.remainingText}>
                           Time Remaining 0s
                         </Text>
-                        <TouchableOpacity>
-                          <Text>Resend</Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setIsLogin(false);
+                          }}
+                        >
+                          <Text style={{ color: "#1976d2" }}>Resend</Text>
                         </TouchableOpacity>
                       </View>
                     </>
@@ -107,6 +127,8 @@ function Login() {
                           placeholder="Enter your phone number"
                           keyboardType="phone-pad"
                           maxLength={10}
+                          value={mobileNo}
+                          onChangeText={handleOnChange}
                         />
                       </View>
                       <Text style={styles.otpText}>
@@ -118,8 +140,15 @@ function Login() {
               </View>
               <View style={styles.logionButton}>
                 <View style={styles.logonButtomContainer}>
-                  <TouchableOpacity style={styles.button} onPress={()=>onLogin() }>
-                    <Text style={styles.buttonText}>→</Text>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => onLogin()}
+                  >
+                    {isSubmitting ? (
+                      <ActivityIndicator />
+                    ) : (
+                      <Icons name="arrowright" color="#fff" size={20} />
+                    )}
                   </TouchableOpacity>
                 </View>
               </View>
@@ -135,16 +164,16 @@ const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
   },
-  remainingText:{
-    color: "#000", 
-    fontSize: 12 
+  remainingText: {
+    color: "#000",
+    fontSize: 12,
   },
-  safeContainer:{
-    flex: 1, 
-    height: "100%", 
-    backgroundColor: "#d4dae7"
+  safeContainer: {
+    flex: 1,
+    height: "100%",
+    backgroundColor: "#d4dae7",
   },
-  resendContainer:{
+  resendContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",
@@ -162,7 +191,7 @@ const styles = StyleSheet.create({
   },
   logionButton: {
     position: "absolute",
-    bottom:-40,
+    bottom: -40,
     alignSelf: "center",
   },
   logonButtomContainer: {
@@ -180,6 +209,8 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     alignSelf: "center",
     marginTop: 170,
+
+    borderRadius: 360,
   },
   card: {
     backgroundColor: "#fff",
@@ -225,7 +256,7 @@ const styles = StyleSheet.create({
   otpText: {
     textAlign: "center",
     color: "#666",
-    fontSize:12,
+    fontSize: 12,
     paddingTop: 30,
   },
   button: {
@@ -248,4 +279,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login
+export default Login;
