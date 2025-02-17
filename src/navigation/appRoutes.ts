@@ -1,17 +1,14 @@
-const appRoutes = {
-  login: "login",
-  home: "home",
-  callLogs: "callLogs",
-  leads: "leads",
-  splash: "splash",
-  setting: "setting",
-  bottomTabNavigator: "bottomTabNavigator",
-  myTeam: "myTeam",
-  leave: "leave",
-  leaveRequest: "leaveRequest",
-  attendance: "attendance",
-  leaveApproved: "Leaveapproved",
-  Attendancehistory: "Attendancehistory",
-};
+const appRoutes={
+    login:"login",
+    home:"home",
+    callLogs:"callLogs",
+    leads:"leads",
+    splash:"splash",
+    setting:"setting",
+    bottomTabNavigator:"bottomTabNavigator",
+    myTeam:"myTeam",
+    attendance:"attendance",
+    leaveApproved:"Leaveapproved"
+}
 
-export default appRoutes;
+export default appRoutes

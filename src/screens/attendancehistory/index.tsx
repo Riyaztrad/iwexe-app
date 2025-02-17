@@ -1,80 +1,55 @@
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  StatusBar,
-} from "react-native";
-import Icons from "react-native-vector-icons/AntDesign";
-import Calender from "react-native-vector-icons/Feather";
-import appRoutes from "../../navigation/appRoutes";
-import { useFetchAttendanceHistory } from "../../queries/useFetchAttendanceHistory";
+import React from 'react'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView} from "react-native";
+import Icons from 'react-native-vector-icons/AntDesign'
+import Calender from 'react-native-vector-icons/Feather'
 
-function Attendancehistory() {
-  const navigation = useNavigation();
-  // const { data: history } = useFetchAttendanceHistory();
-  const attendanceData = Array(15).fill({
-    date: "March 12, 2023",
-    time: "10:00 AM - 07:15 PM",
-    status: "Submitted",
-  });
+function Attendancehistory(){
+    const attendanceData = Array(15).fill({
+      date: "March 12, 2023",
+      time: "10:00 AM - 07:15 PM",
+      status: "Submitted",
+    });
 
-  return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor={"#351f43"} />
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <Icons name="arrowleft" color="#fff" size={20} />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Attendance</Text>
-      </View>
-
+return (
+    <SafeAreaView style={{flex:1}}>
+  <View style={styles.container}>
+    <StatusBar backgroundColor={"#351f43"} />
+    <View style={styles.header}>
+      <TouchableOpacity style={styles.backButton}>
+         <Icons name="arrowleft" color="#fff" size={20}/>
+      </TouchableOpacity>
+      <Text style={styles.headerText}>Attendance</Text>
+    </View>
+    
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.punchButton}
-          onPress={() => {
-            navigation.navigate(appRoutes.attendance, { data: "Punch-in" });
-          }}
-        >
+        <TouchableOpacity style={styles.punchButton}>
           <Text style={styles.buttonText}>Punch-in</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.punchButton}
-          onPress={() => {
-            navigation.navigate(appRoutes.attendance, { data: "Punch-out" });
-          }}
-        >
+        <TouchableOpacity style={styles.punchButton}>
           <Text style={styles.buttonText}>Punch-out</Text>
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={attendanceData}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <View style={styles.cardContent}>
-              <Text style={styles.dateText}>
-                <Calender name="calendar" color="#0b5ed7" size={15} />{" "}
-                {item.date}
-              </Text>
-              <Text style={styles.timeText}>{item.time}</Text>
-            </View>
-            <View style={styles.statusBadge}>
-              <Text style={styles.statusText}>{item.status}</Text>
-            </View>
+    <FlatList
+      data={attendanceData}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.card}>
+          <View style={styles.cardContent}>
+            <Text style={styles.dateText}>
+               <Calender name="calendar" color="#0b5ed7" size={15} /> {item.date}
+            </Text>
+            <Text style={styles.timeText}>{item.time}</Text>
           </View>
-        )}
-      />
-    </View>
-  );
+          <View style={styles.statusBadge}>
+            <Text style={styles.statusText}>{item.status}</Text>
+          </View>
+        </View>
+      )}
+    />
+  </View>
+  </SafeAreaView>
+
+);
 }
 
 const styles = StyleSheet.create({
@@ -85,7 +60,6 @@ const styles = StyleSheet.create({
   header: {
     paddingBottom: 15,
     paddingHorizontal: 10,
-    paddingTop: 20,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#351f43",
@@ -124,12 +98,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     alignItems: "center",
-
+    
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
-    borderLeftWidth: 10,
-    borderLeftColor: "#0752ad",
+    borderLeftWidth:10,
+    borderLeftColor:'#0752ad'
   },
 
   cardContent: {
@@ -150,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    marginBottom: 15,
+    marginBottom:15
   },
   statusText: {
     color: "white",
@@ -159,4 +133,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Attendancehistory;
+
+export default Attendancehistory

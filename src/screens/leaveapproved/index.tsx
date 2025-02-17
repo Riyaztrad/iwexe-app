@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet , StatusBar} from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet , StatusBar, SafeAreaView} from "react-native";
 import Icons from 'react-native-vector-icons/AntDesign'
 
 function LeaveApproved(){
@@ -14,8 +14,10 @@ function LeaveApproved(){
         })
       );
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={{flex:1}}>
         <StatusBar backgroundColor={"#351f43"} />
+      <View style={styles.container}>
+        
         <View style={styles.header}>
           <TouchableOpacity style={styles.backButton}>
             <Icons name="arrowleft" color="#fff" size={20} />
@@ -23,7 +25,6 @@ function LeaveApproved(){
           <Text style={styles.headerText}>Approve Leaves</Text>
         </View>
 
-        {/* Leave Requests List */}
         <FlatList
           data={leaveRequests}
           keyExtractor={(item, index) => index.toString()}
@@ -66,6 +67,7 @@ function LeaveApproved(){
           )}
         />
       </View>
+      </SafeAreaView>
     );
 }
 

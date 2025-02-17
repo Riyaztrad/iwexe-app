@@ -18,6 +18,7 @@ export default function App() {
 
   var persist = persistStore(store);
   return (
+    
     <Provider store={store}>
       <PersistGate loading={null} persistor={persist}>
         <QueryClientProvider client={queryClient}>

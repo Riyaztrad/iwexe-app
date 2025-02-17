@@ -76,7 +76,7 @@ function Login() {
                           color: "#000",
                         }}
                       >
-                        The OTP sent to your whatsapp +91 7881934945
+                        The OTP sent to your whatsapp +91 {mobileNo}
                       </Text>
                       <OtpInput
                         numberOfDigits={4}
